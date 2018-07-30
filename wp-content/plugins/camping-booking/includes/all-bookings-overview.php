@@ -1,18 +1,21 @@
 <?php
 
- function add_acf_columns ($columns) {
+ function add_booking_acf_columns ($columns) {
    unset($columns['date']);
    return array_merge ($columns, array ( 
      'booking_type' => __('Type verblijf'),
      'fullname' => __('Name'),
      'date_from' => __('Van'),
      'date_to' => __('Tot'),
+     'status' => __('Status'),
+     'payment_status' => __('Betaal-status'),
+     'assigned' => __('Toegewezen plek')
    ) );
  }
- add_filter ('manage_booking_posts_columns', 'add_acf_columns');
+ add_filter ('manage_booking_posts_columns', 'add_booking_acf_columns');
 
 
- function exhibition_custom_column ($column, $post_id){
+ function booking_custom_column ($column, $post_id){
  	switch ($column) {
  		case 'fullname':
  			$name = get_post_meta($post_id, 'first_name', true) . ' ' . get_post_meta($post_id, 'name', true);
@@ -30,18 +33,20 @@
 
  			echo $friendlyType;
  		break;
+ 		case 'assigned':
+ 			$placeId = get_post_meta($post_id, 'assigned')[0];
+ 			if (placeId) {
+ 				echo get_post_meta($placeId, 'number', true);
+ 			}
+ 		break;
+ 		case 'status':
+ 		case 'payment_status':
+ 			echo getFieldSelectLabel($column, $post_id);
+ 		break;
  		default:
  			echo get_post_meta($post_id, $column, true);
  		break;	
  	}
    
  }
- add_action ('manage_booking_posts_custom_column', 'exhibition_custom_column', 10, 2);
-
- function getFieldSelectLabel($field, $post_id)
- {
-	$field = get_field_object($field, $post_id);
-	$value = $field['value'];
-	$label = $field['choices'][ $value ];
-	return $label;
- }
+ add_action ('manage_booking_posts_custom_column', 'booking_custom_column', 10, 2);

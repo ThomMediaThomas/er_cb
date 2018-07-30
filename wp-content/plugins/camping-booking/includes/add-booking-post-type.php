@@ -52,7 +52,7 @@ function post_type_bookings() {
       'capability_type'       => 'page',
       'show_in_rest'          => false,
    );
-   register_post_type( 'booking', $args );
+   register_post_type('booking', $args);
 
 }
-add_action( 'init', 'post_type_bookings', 0 );
+add_action('init', 'post_type_bookings', 0);
