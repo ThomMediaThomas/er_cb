@@ -1,7 +1,6 @@
 <?php
-// Register Custom Post Type
-function post_type_accommodations() {
 
+function post_type_accommodations() {
    $labels = array(
       'name'                  => 'Accomodaties',
       'singular_name'         => 'Accomodatie',
@@ -52,7 +51,8 @@ function post_type_accommodations() {
       'capability_type'       => 'page',
       'show_in_rest'          => false,
    );
-   register_post_type('accommodation', $args);
 
+   register_post_type('accommodation', $args);
 }
+
 add_action('init', 'post_type_accommodations');

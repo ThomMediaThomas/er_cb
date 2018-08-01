@@ -1,0 +1,84 @@
+
+/*TABLE*/
+.column-booking_type,
+.column-payment_status,
+.column-status {
+	position: relative;
+}
+
+.booking-payment_status,
+.booking-status,
+.booking-booking_type{
+	font-weight: bold;
+	background-color: grey;
+	color: White;
+	padding: 8px 10px;
+	display: block;
+
+	box-sizing: border-box;
+
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.booking-payment_status{
+	&.booking-niet_betaald {
+		background-color: red;
+	}
+
+	&.booking-betaald {
+		background-color: green;
+	}
+}
+
+.booking-status {
+	&.booking-aangevraagd {
+		background-color: orange;
+	}
+
+	&.booking-bevestigd {
+		background-color: green;
+	}
+
+	&.booking-geannuleerd {
+		background-color: grey;
+		text-decoration: line-through;
+	}
+}
+
+.booking-booking_type {
+	&.booking-kampeerplaats_ {
+		background-color: purple
+	}
+
+	&.booking-kampeerplaats_tent {
+		background-color: blueviolet;
+	}
+
+	&.booking-kampeerplaats_vouwwagen {
+		background-color: darkmagenta;
+	}
+
+	&.booking-kampeerplaats_camper {
+		background-color: darkorchid;
+	}
+
+	&.booking-kampeerplaats_caravan {
+		background-color: mediumpurple;
+	}
+
+	&.booking-huisje_ {
+		background-color: cyan;
+	}
+
+	&.booking-huisje_4-persoonshuisje {
+		background-color: dodgerblue;
+	}
+
+	&.booking-huisje_6-persoonshuisje {
+		background-color: lightseagreen;
+	}	
+}

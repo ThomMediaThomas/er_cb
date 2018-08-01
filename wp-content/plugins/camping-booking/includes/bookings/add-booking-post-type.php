@@ -1,10 +1,9 @@
 <?php
-// Register Custom Post Type
-function post_type_bookings() {
 
+function post_type_bookings() {
    $labels = array(
-      'name'                  => 'bookings',
-      'singular_name'         => 'booking',
+      'name'                  => 'Boekingen',
+      'singular_name'         => 'Boeking',
       'menu_name'             => 'Boekingen',
       'name_admin_bar'        => 'Boeking',
       'archives'              => 'Boekingsarchief',
@@ -35,7 +34,7 @@ function post_type_bookings() {
       'label'                 => 'booking',
       'description'           => 'Booking',
       'labels'                => $labels,
-      'supports'              => array( 'title' ),
+      'supports'              => array('title'),
       'hierarchical'          => false,
       'public'                => true,
       'show_ui'               => true,
@@ -52,7 +51,8 @@ function post_type_bookings() {
       'capability_type'       => 'page',
       'show_in_rest'          => false,
    );
-   register_post_type('booking', $args);
 
+   register_post_type('booking', $args);
 }
+
 add_action('init', 'post_type_bookings', 0);
