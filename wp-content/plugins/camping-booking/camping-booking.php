@@ -15,6 +15,8 @@ include( plugin_dir_path( __FILE__ ) . 'includes/bookings/all-bookings-overview.
 include( plugin_dir_path( __FILE__ ) . 'includes/bookings/add-submenus.php');
 include( plugin_dir_path( __FILE__ ) . 'includes/bookings/auto-generate-booking-title.php');
 
+include( plugin_dir_path( __FILE__ ) . 'includes/endpoints/bookings.php');
+
 include( plugin_dir_path( __FILE__ ) . 'includes/accomodations/add-accomodation-post-type.php');
 include( plugin_dir_path( __FILE__ ) . 'includes/accomodations/all-accomodations-overview.php');
 
@@ -24,10 +26,10 @@ function camping_booking_admin_style() {
 add_action('admin_enqueue_scripts', 'camping_booking_admin_style');
 
 
-wp_register_script('admin-scripts', plugin_dir_url( __FILE__ ) . '/scripts/main.js');
+wp_register_script('booking-scripts', plugin_dir_url( __FILE__ ) . '/scripts/booking.js');
 
 function camping_booking_admin_scripts () {
-  wp_enqueue_script('admin-scripts');
+  wp_enqueue_script('booking-scripts');
 }
 
 add_action('admin_enqueue_scripts', 'camping_booking_admin_scripts');

@@ -7,3 +7,13 @@ $orange: #ec9813;
 $cyan: #76bcc9;
 
 $lightGrey: #dddddd;
+
+$camping: #0082cc;
+$foldingCar: lighten($camping, 10%);
+$caravan: lighten($camping, 20%);
+$camper: lighten($camping, 30%);
+$tent: lighten($camping, 40%);
+
+$chalet: #bf3ad7;
+$chalet4: lighten($chalet, 10%);
+$chalet6: lighten($chalet, 20%);

@@ -9,7 +9,6 @@
 .booking-payment_status,
 .booking-status,
 .booking-booking_type{
-	font-weight: bold;
 	background-color: grey;
 	color: White;
 	padding: 8px 10px;
@@ -25,22 +24,24 @@
 }
 
 .booking-payment_status{
+	font-weight: bold;
 	&.booking-niet_betaald {
-		background-color: red;
+		background-color: $red;
 	}
 
 	&.booking-betaald {
-		background-color: green;
+		background-color: $green;
 	}
 }
 
 .booking-status {
+	font-weight: bold;
 	&.booking-aangevraagd {
-		background-color: orange;
+		background-color: $orange;
 	}
 
 	&.booking-bevestigd {
-		background-color: green;
+		background-color: $green;
 	}
 
 	&.booking-geannuleerd {
@@ -51,34 +52,40 @@
 
 .booking-booking_type {
 	&.booking-kampeerplaats_ {
-		background-color: purple
+		background-color: $camping
 	}
 
 	&.booking-kampeerplaats_tent {
-		background-color: blueviolet;
+		background-color: $tent;
 	}
 
 	&.booking-kampeerplaats_vouwwagen {
-		background-color: darkmagenta;
+		background-color: $foldingCar;
 	}
 
 	&.booking-kampeerplaats_camper {
-		background-color: darkorchid;
+		background-color: $camper;
 	}
 
 	&.booking-kampeerplaats_caravan {
-		background-color: mediumpurple;
+		background-color: $caravan;
 	}
 
 	&.booking-huisje_ {
-		background-color: cyan;
+		background-color: $chalet;
 	}
 
 	&.booking-huisje_4-persoonshuisje {
-		background-color: dodgerblue;
+		background-color: $chalet4;
 	}
 
 	&.booking-huisje_6-persoonshuisje {
-		background-color: lightseagreen;
+		background-color: $chalet6;
 	}	
+}
+
+
+select option:disabled {
+    font-style: italic;
+    background-color: lightgrey;
 }

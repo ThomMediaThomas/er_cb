@@ -24,44 +24,74 @@
 //This function retrieves all bookings for an accomodation per period
  function getBookingsForAccomodationPerPeriod($accomodationId, $dateFrom, $dateTo)
  {
- 	return get_posts([
-	  	'post_type' => 'booking',
-		'orderby' => 'meta_value_num',
-		'meta_key' => 'date_from',
-		'order'	=> 'ASC',
-	  	'numberposts' => -1,
-		'meta_query'	=> array(
-			'relation' => 'AND',
-			array(
-				'relation'		=> 'OR',
-				array(
-					'key' => 'date_from',
-					'compare' => '>=',
-					'value'=> date('Ymd', $dateFrom)
-				),			
-				array(
-					'key' => 'date_from',
-					'compare' => '<=',
-					'value'=> date('Ymd', $dateTo)
-				),
-				array(
-					'key' => 'date_to',
-					'compare' => '>=',
-					'value'=> date('Ymd', $dateFrom)
-				),			
-				array(
-					'key' => 'date_to',
-					'compare' => '<=',
-					'value'=> date('Ymd', $dateTo)
-				)
-			),	
-			array(
-				'key' => 'assigned',
-				'compare' => '=',
-				'value'=> $accomodationId
+	global $wpdb;
+
+	$dateFromFormatted = date('Ymd', $dateFrom);
+	$dateToFormatted = date('Ymd', $dateTo);
+
+	$sqlQuery = "
+		SELECT DISTINCT $wpdb->posts.* 
+		FROM $wpdb->posts, $wpdb->postmeta AS post_meta_1, $wpdb->postmeta AS post_meta_2
+		WHERE $wpdb->posts.ID = post_meta_1.post_id 
+		AND $wpdb->posts.ID = post_meta_2.post_id 
+		AND $wpdb->posts.post_type = 'booking'
+		AND 
+		(
+			(
+				post_meta_1.meta_key = 'date_from' 
+				AND post_meta_1.meta_value >= '$dateFromFormatted'
+				AND post_meta_1.meta_value <= '$dateToFormatted'
+			) OR (
+				post_meta_1.meta_key = 'date_to' 
+				AND post_meta_1.meta_value >= '$dateFromFormatted'
+				AND post_meta_1.meta_value <= '$dateToFormatted'
+				
 			)
 		)
-	]);;
+		AND post_meta_2.meta_key = 'assigned' 
+		AND post_meta_2.meta_value = $accomodationId
+		AND $wpdb->posts.post_status = 'publish' 
+		ORDER BY $wpdb->posts.post_date DESC
+	";
+
+	$results = $wpdb->get_results($sqlQuery, OBJECT);
+
+	return $results;
+ }
+
+//This function retrieves all bookings per period
+ function getBookingsPerPeriod($dateFrom, $dateTo)
+ { 	
+	global $wpdb;  
+
+	$dateFromFormatted = date('Ymd', $dateFrom);
+	$dateToFormatted = date('Ymd', $dateTo);
+
+	$sqlQuery = "
+		SELECT DISTINCT $wpdb->posts.* 
+		FROM $wpdb->posts, $wpdb->postmeta AS post_meta_1
+		WHERE $wpdb->posts.ID = post_meta_1.post_id 
+		AND $wpdb->posts.post_type = 'booking'
+		AND 
+		(
+			(
+				post_meta_1.meta_key = 'date_from' 
+				AND post_meta_1.meta_value >= '$dateFromFormatted'
+				AND post_meta_1.meta_value <= '$dateToFormatted'
+			) OR (
+				post_meta_1.meta_key = 'date_to' 
+				AND post_meta_1.meta_value >= '$dateFromFormatted'
+				AND post_meta_1.meta_value <= '$dateToFormatted'
+				
+			)
+		)
+		AND $wpdb->posts.post_status = 'publish' 
+		ORDER BY $wpdb->posts.post_date DESC
+	";
+
+	$results = $wpdb->get_results($sqlQuery, OBJECT);
+
+	return $results;
  }
 
  function getAccomodationNameHtml($accomodation)

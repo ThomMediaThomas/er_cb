@@ -60,7 +60,7 @@ function remove_booking_filters(){
   $screen = get_current_screen();
   if ($screen->post_type == 'booking'){
     add_filter('months_dropdown_results', '__return_empty_array');
-    add_filter('bulk_actions-edit-booking', '__return_empty_array');
+    //add_filter('bulk_actions-edit-booking', '__return_empty_array');
   }
 }
 

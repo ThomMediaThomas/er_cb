@@ -22,7 +22,7 @@
 	   	'fulldate' => date('d-m-Y', $i),
 	   	'date' => $date,
 	   	'day_short' => $days_short[date('w', $i-1)],
-	   	'today' => $date == $today
+	   	'today' => $date == $today && date('m') == date('m', $i)
 	   ];
 	}
 

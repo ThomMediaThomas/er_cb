@@ -7,7 +7,6 @@
 .booking-payment_status,
 .booking-status,
 .booking-booking_type {
-  font-weight: bold;
   background-color: grey;
   color: White;
   padding: 8px 10px;
@@ -20,45 +19,50 @@
   width: 100%;
   height: 100%; }
 
-.booking-payment_status.booking-niet_betaald {
-  background-color: red; }
+.booking-payment_status {
+  font-weight: bold; }
+  .booking-payment_status.booking-niet_betaald {
+    background-color: #e20000; }
+  .booking-payment_status.booking-betaald {
+    background-color: #209f1d; }
 
-.booking-payment_status.booking-betaald {
-  background-color: green; }
-
-.booking-status.booking-aangevraagd {
-  background-color: orange; }
-
-.booking-status.booking-bevestigd {
-  background-color: green; }
-
-.booking-status.booking-geannuleerd {
-  background-color: grey;
-  text-decoration: line-through; }
+.booking-status {
+  font-weight: bold; }
+  .booking-status.booking-aangevraagd {
+    background-color: #ec9813; }
+  .booking-status.booking-bevestigd {
+    background-color: #209f1d; }
+  .booking-status.booking-geannuleerd {
+    background-color: grey;
+    text-decoration: line-through; }
 
 .booking-booking_type.booking-kampeerplaats_ {
-  background-color: purple; }
+  background-color: #0082cc; }
 
 .booking-booking_type.booking-kampeerplaats_tent {
-  background-color: blueviolet; }
+  background-color: #99daff; }
 
 .booking-booking_type.booking-kampeerplaats_vouwwagen {
-  background-color: darkmagenta; }
+  background-color: #00a3ff; }
 
 .booking-booking_type.booking-kampeerplaats_camper {
-  background-color: darkorchid; }
+  background-color: #66c8ff; }
 
 .booking-booking_type.booking-kampeerplaats_caravan {
-  background-color: mediumpurple; }
+  background-color: #33b5ff; }
 
 .booking-booking_type.booking-huisje_ {
-  background-color: cyan; }
+  background-color: #bf3ad7; }
 
 .booking-booking_type.booking-huisje_4-persoonshuisje {
-  background-color: dodgerblue; }
+  background-color: #cd64e0; }
 
 .booking-booking_type.booking-huisje_6-persoonshuisje {
-  background-color: lightseagreen; }
+  background-color: #db8fe8; }
+
+select option:disabled {
+  font-style: italic;
+  background-color: lightgrey; }
 
 #titlediv input#title[name="post_title"]:disabled {
   background-color: #dddddd; }
@@ -107,7 +111,8 @@ body.post-type-booking .acf_postbox h2.hndle {
     left: 0px;
     width: 100%;
     height: 100%;
-    cursor: pointer; }
+    cursor: pointer;
+    opacity: 0.5; }
     #calendar_overview td .day-status.first {
       border-radius: 15px 0 0 15px; }
     #calendar_overview td .day-status.last {
