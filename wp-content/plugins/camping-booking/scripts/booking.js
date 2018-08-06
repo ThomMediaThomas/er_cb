@@ -51,5 +51,5 @@ function updateSelect($assignedSelect)
 
 function createUrl (dateFrom, dateTo, type, subType)
 {
-	return '/wp-json/camping-booking/assigned_accomodations?date_from=' + dateFrom + '&date_to=' + dateTo + '&type=' + type + '&subtype=' + subType;
+	return '/wp-json/camping-booking/unavailable_accomodations?date_from=' + dateFrom + '&date_to=' + dateTo + '&type=' + type + '&subtype=' + subType;
 }

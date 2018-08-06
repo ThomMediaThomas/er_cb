@@ -60,17 +60,21 @@
  }
 
 //This function retrieves all bookings per period
- function getBookingsPerPeriod($dateFrom, $dateTo)
+ function getUnavailableAccomodations($dateFrom, $dateTo, $type, $subType)
  { 	
 	global $wpdb;  
 
 	$dateFromFormatted = date('Ymd', $dateFrom);
 	$dateToFormatted = date('Ymd', $dateTo);
 
+	//get all bookings for period
 	$sqlQuery = "
 		SELECT DISTINCT $wpdb->posts.* 
-		FROM $wpdb->posts, $wpdb->postmeta AS post_meta_1
+		FROM $wpdb->posts, 
+			 $wpdb->postmeta AS post_meta_1,
+			 $wpdb->postmeta AS post_meta_2
 		WHERE $wpdb->posts.ID = post_meta_1.post_id 
+		AND  $wpdb->posts.ID = post_meta_2.post_id 
 		AND $wpdb->posts.post_type = 'booking'
 		AND 
 		(
@@ -89,9 +93,36 @@
 		ORDER BY $wpdb->posts.post_date DESC
 	";
 
-	$results = $wpdb->get_results($sqlQuery, OBJECT);
+	$bookingResults = $wpdb->get_results($sqlQuery, OBJECT);
 
-	return $results;
+	//get accomodations for above bookings
+	$accomodations = array_map(function ($booking) {
+		$assigned = get_field('assigned', $booking->ID);
+		return (int)$assigned->ID;
+	}, $bookingResults);
+
+	//get all accomodations of other type than current type
+	$sqlQueryOtherTypes = "
+		SELECT DISTINCT $wpdb->posts.*
+		FROM $wpdb->posts, 
+			 $wpdb->postmeta AS post_meta_1
+		WHERE $wpdb->posts.ID = post_meta_1.post_id 
+		AND $wpdb->posts.post_type = 'accommodation'
+		AND (
+			post_meta_1.meta_key = 'type' 
+			AND post_meta_1.meta_value != '$type'
+		)
+		AND $wpdb->posts.post_status = 'publish' 
+		ORDER BY $wpdb->posts.post_date DESC
+	";
+
+	$accomodationsOtherTypeResult = $wpdb->get_results($sqlQueryOtherTypes, OBJECT);
+	$accomodationsOtherType = array_map(function ($accomodationOtherType) {
+		return (int)$accomodationOtherType->ID;
+	}, $accomodationsOtherTypeResult);
+
+	//merge all together
+	return array_merge($accomodations, $accomodationsOtherType);
  }
 
  function getAccomodationNameHtml($accomodation)
