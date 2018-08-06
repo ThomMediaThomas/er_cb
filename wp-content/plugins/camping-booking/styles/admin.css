@@ -60,16 +60,22 @@
 .booking-booking_type.booking-huisje_6-persoonshuisje {
   background-color: #db8fe8; }
 
-select option:disabled {
-  font-style: italic;
-  background-color: lightgrey; }
-
 #titlediv input#title[name="post_title"]:disabled {
   background-color: #dddddd; }
 
 body.post-type-booking .acf_postbox h2.hndle {
   background-color: #76bcc9;
   color: White; }
+
+#reload-assign-select {
+  margin-top: 10px;
+  background-color: #76bcc9;
+  color: White;
+  font-weight: bold; }
+
+select option:disabled {
+  font-style: italic;
+  background-color: lightgrey; }
 
 #calendar_overview_holder {
   overflow-x: auto; }

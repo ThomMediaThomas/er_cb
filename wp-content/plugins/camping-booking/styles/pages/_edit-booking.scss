@@ -6,3 +6,16 @@ body.post-type-booking .acf_postbox h2.hndle {
 	background-color: $cyan;
 	color: White;
 }
+
+
+#reload-assign-select {
+	margin-top: 10px;
+	background-color: $cyan;
+	color: White;
+	font-weight: bold;
+}
+
+select option:disabled {
+    font-style: italic;
+    background-color: lightgrey;
+}
