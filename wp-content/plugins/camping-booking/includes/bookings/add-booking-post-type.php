@@ -34,7 +34,7 @@ function post_type_bookings() {
       'label'                 => 'booking',
       'description'           => 'Booking',
       'labels'                => $labels,
-      'supports'              => array('title'),
+      'supports'              => array('title', 'revisions'),
       'hierarchical'          => false,
       'public'                => true,
       'show_ui'               => true,

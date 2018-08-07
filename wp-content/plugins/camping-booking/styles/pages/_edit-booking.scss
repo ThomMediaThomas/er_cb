@@ -19,3 +19,10 @@ select option:disabled {
     font-style: italic;
     background-color: lightgrey;
 }
+
+#acf-field-notes {
+	background-color: lighten($orange, 40%);
+	border: 1px solid $orange;
+	font-weight: bold;
+	color: $orange;
+}

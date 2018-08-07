@@ -128,7 +128,8 @@
 											$title = $booking->post_title . ': ' . get_field('first_name', $booking->ID) . ' ' . get_field('name', $booking->ID);
 										?>
 										<a title="<?php echo $title; ?>" 
-											class="day-status day-status-<?php echo $dayStatus; ?>"
+											class="day-status day-status-<?php echo $dayStatus; ?> js-booking"
+											data-booking-id="<?php echo $booking->ID; ?>"
 											href="<?php echo get_edit_post_link($booking->ID); ?>"
 										></a>
 									<?php endforeach; ?>

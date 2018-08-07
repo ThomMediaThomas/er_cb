@@ -9,6 +9,8 @@
    License: -   */
 
 include( plugin_dir_path( __FILE__ ) . 'includes/global.php');
+include( plugin_dir_path( __FILE__ ) . 'scripts.php');
+include( plugin_dir_path( __FILE__ ) . 'styles.php');
 
 include( plugin_dir_path( __FILE__ ) . 'includes/bookings/add-booking-post-type.php');
 include( plugin_dir_path( __FILE__ ) . 'includes/bookings/all-bookings-overview.php');
@@ -19,17 +21,3 @@ include( plugin_dir_path( __FILE__ ) . 'includes/endpoints/bookings.php');
 
 include( plugin_dir_path( __FILE__ ) . 'includes/accomodations/add-accomodation-post-type.php');
 include( plugin_dir_path( __FILE__ ) . 'includes/accomodations/all-accomodations-overview.php');
-
-function camping_booking_admin_style() {
-  wp_enqueue_style('admin-styles', plugin_dir_url( __FILE__ ) . '/styles/admin.css');
-}
-add_action('admin_enqueue_scripts', 'camping_booking_admin_style');
-
-
-wp_register_script('booking-scripts', plugin_dir_url( __FILE__ ) . '/scripts/booking.js');
-
-function camping_booking_admin_scripts () {
-  wp_enqueue_script('booking-scripts');
-}
-
-add_action('admin_enqueue_scripts', 'camping_booking_admin_scripts');
